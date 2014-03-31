@@ -1,0 +1,135 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/css3/border-radius";
+@import "susy";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+$total-columns  : 5;
+$column-width   : 4em;
+$gutter-width   : 1em;
+$grid-padding   : $gutter-width;
+
+$medium-columns  : 8;
+$large-columns  : 12;
+
+$font: "Open Sans", sans-serif;
+$fontsize: 16px;
+$lineheight: 18px;
+$white: #fff;
+$darkgray: #333;
+$gray: #666;
+$lightgray: #ddd;
+$blue: #046;
+$lightblue: #eef;
+$lightred: #fee;
+$red: #d00;
+
+$container-width: container-outer-width($large-columns);
+
+@mixin default-border {
+    border: 1px dotted $gray;
+    @include border-radius(0.2em, 0.2em);
+}
+
+.container {
+    @include container;
+}
+
+h1, h2, h3, h4 { margin: 1em 0; }
+h1 { font-size: 2em; }
+
+body {
+    color: $darkgray;
+    font-family: $font;
+    font-size: $fontsize;
+
+    h1, h3 {
+        margin: 0.4em 0 1em;
+    }
+    p {
+        margin: 1em 0;
+    }
+
+    .loading {
+        display: none;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 1003;
+        background-color: gray;
+    }
+
+    .error {
+        display: inline-block;
+        border: none;
+        @include border-radius(0.2em, 0.2em);
+        background-color: $lightred;
+        color: $red;
+        padding: 0.2em;
+    }
+    .message {
+        display: inline-block;
+        border: none;
+        @include border-radius(0.2em, 0.2em);
+        background-color: $lightblue;
+        color: $blue;
+        padding: 0.2em;
+    }
+
+    fieldset {
+        @include default-border;
+
+        padding: 1em;
+        margin: 1em 0;
+
+        legend {
+            @include default-border;
+            padding: 0.4em;
+        }
+
+        label {
+            display: inline-block;
+            margin-right: 1em;
+        }
+        input[type=text] {
+            width: 40%;
+            border: 1px solid $lightgray;
+            @include border-radius(0.2em, 0.2em);
+            color: $darkgray;
+            padding: 0.4em;
+        }
+    }
+    button, input[type=button] {
+        @include default-border;
+        border: 1px solid $darkgray;
+
+        padding: 0.6em;
+        color: $darkgray;
+        background-color: $white;
+
+        &:hover {
+            color: $white;
+            background-color: $blue;
+            border: 1px solid $blue;
+        }
+    }
+
+    .results {
+        padding: 1em;
+        @include default-border;
+
+        p {
+            margin: 1em 0 0;
+        }
+
+        .button-copy {
+            display: inline-block;
+            margin-left: 1em;
+        }
+    }
+
+}

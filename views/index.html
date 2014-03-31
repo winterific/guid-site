@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Guids!</title>
+        <link href="/static/stylesheets/screen.css" rel="stylesheet" media="screen"/>
+    </head>
+    <body>
+        {% raw %}
+        <div class="container" ng-app>
+            <div class="loading" ng-show="loading">Loading...</div>
+
+            <h1>Guids!</h1>
+            <p>The world's Guids are in danger of running out!  If you have Guids to spare, please donate them here.</p>
+
+            <div ng-controller="Guids" ng-cloak>
+            
+                <p ng-show="message" class="message" ng-model="message">{{ message }}</p>
+                <p ng-show="error" class="error" ng-model="error">{{ error }}</p>
+
+                <fieldset class="borrow">
+                    <legend>Borrow Guid</legend>
+                    <p>There are only {{ count }} Guids left in the world!</p>
+                    <p>If paying by check, please make checks out to Carl Ashby.</p>
+
+                    <button ng-click="borrow()">Borrow a Guid (Cost £12)</button>
+                    <p class="message" ng-show="borrowedGuid">{{ borrowedGuid }} </p>
+                    <p ng-show="borrowedGuid.indexOf('ff') > -1">Ooooh, that looks like a good one!  Better use it wisely.</p>
+                </fieldset>
+
+                <fieldset class="donate">
+                    <legend>Guid Donation</legend>
+                    <p>Please donate your existing guids here!</p>
+
+                    <input type="text" name="guidToDonate" ng-model="guidToDonate" />
+                    <button ng-click="donate()">Donate</button>
+                    <p class="error" ng-show="validationError" ng-model="validationError">{{ validationError }}</p>
+
+                </fieldset>
+
+            </div>
+        </div>
+        {% endraw %}
+
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+        <script>typeof (angular) === 'undefined' && document.write("<script src='/static/scripts/angular.min.js'></" + "script>");</script>
+        {#
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>typeof (jQuery) === 'undefined' && document.write("<script src='/static/scripts/jquery-2.1.0.min.js'></" + "script>");</script>
+        #}
+        <script type="text/javascript">
+            var guidCount = {{ guidCount }};
+        </script>
+        <script src='/static/scripts/guids/mainController.js'></script>
+        {% if isProd %}
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-2003853-6', 'winterific.com');
+            ga('send', 'pageview');
+        </script>
+        {% endif %}
+    </body>
+</html>
